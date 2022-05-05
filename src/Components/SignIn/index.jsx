@@ -1,3 +1,10 @@
+import SignInContainer from "./style"
+
 export default function SignIn() {
-    return <h1>SignIn</h1>
+    return (
+
+        <SignInContainer>
+        <h1>SignIn</h1>
+        </SignInContainer>
+    )
 }
