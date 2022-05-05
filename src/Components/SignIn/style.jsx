@@ -12,8 +12,10 @@ const Container = styled.div`
     background-color: #8C11BE;
 
     @media (min-width: 768px) {
-        width: 50%;
-        margin-left: 25%;
+        width: 25%;
+        margin: auto;
+        border: 1px solid white;
+        border-radius: 20px;
     }
 
     .items {
