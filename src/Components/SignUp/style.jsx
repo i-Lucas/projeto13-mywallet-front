@@ -19,7 +19,7 @@ const Container = styled.div`
     .items {
 
         width: 100%;
-        height: 60%;
+        height: 90%;
     
         display: flex;
         flex-direction: column;
@@ -33,7 +33,7 @@ const Container = styled.div`
             font-size: 32px;
             line-height: 50px;
             color: #FFFFFF;
-            margin-top: 10%;
+            padding-top: 15%;
         }
 
         form {
@@ -49,10 +49,10 @@ const Container = styled.div`
             input {
 
                 width: 85%;
-                height: 15%;
+                height: 10%;
                 background: #FFFFFF;
-                margin-bottom: 2%;
                 border-radius: 4px;
+                margin-bottom: 2%;
 
                 font-family: 'Raleway';                
                 font-weight: 400;
@@ -64,11 +64,11 @@ const Container = styled.div`
             button {
                 
                 width: 85%;
-                height: 15%;
+                height: 10%;
                 background: #A328D6;
+                border-radius: 4px;
                 border: none;
                 cursor: pointer;
-                border-radius: 4px;
 
                 font-family: 'Raleway';
                 font-weight: 700;
