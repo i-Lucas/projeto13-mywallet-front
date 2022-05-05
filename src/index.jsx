@@ -12,7 +12,7 @@ function App() {
 		<BrowserRouter>
 			<Routes>
 				<Route path="/" element={<SignIn />} />
-				<Route path="/singup" element={<SignUp />} />
+				<Route path="/signup" element={<SignUp />} />
                 <Route path="/historic" element={<Historic />} />
                 <Route path="/earnings" element={<Earnings />} />
                 <Route path="/outlay" element={<Outlay />} />
