@@ -56,13 +56,98 @@ const Container = styled.div`
         .screen { 
 
             width: 100%;
-            height: 80%;
-            background-color: #FFFFFF;
-            border-radius: 5px;
+            height: 70%;
 
             display: flex;
-            justify-content: center;
+            flex-direction: column;
+            overflow-y: auto;
+
+            background-color: #FFFFFF;
+
+            .balance {
+
+                width: 100%;
+                min-height: 50px;
+
+                display: flex;
+                justfy-content: center;
+                align-items: center;
+
+                font-family: 'Raleway';
+                font-style: normal;
+                font-weight: 400;
+                font-size: 16px;
+                line-height: 19px;
+
+                .date {
+
+                    width: 20%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+
+                    h1 {
+                        color: #C6C6C6;
+                    }
+                }
+
+                .desc {
+
+                    width: 60%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    overflow-x: scroll;
+
+                    h1 {
+                        color: #000000;
+                    }
+                }
+
+                .value {
+
+                    width: 20%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+
+                    h1 {
+                        color: #C70000;
+                    }
+                }
+            }
+        }
+
+        .total {
+
+            width: 100%;
+            height: 10%;
+
+            display: flex;
+            justify-content: flex-start;
             align-items: center;
+
+            background-color: #FFFFFF;
+
+            h1 {
+
+                margin-left: 5%;
+                font-family: 'Raleway';
+                font-weight: 700;
+                font-size: 17px;
+                line-height: 20px;
+                color: #000000;
+            }
+
+            h2 {
+
+                margin-left: 60%;
+                font-family: 'Raleway';
+                font-weight: 400;
+                font-size: 17px;
+                line-height: 20px;
+                color: #03AC00;
+            }
         }
 
         .options {
