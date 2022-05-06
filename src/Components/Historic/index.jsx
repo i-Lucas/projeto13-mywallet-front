@@ -1,14 +1,16 @@
+import { useNavigate } from 'react-router-dom'
+
 import HistoricContainer from "./style"
 
 export default function Historic() {
 
+    const navigate = useNavigate();
+
     return (
-
         <HistoricContainer>
-
             <div className="username-exit">
                 <h1>Hi Lucas</h1>
-                <div className="icon"><ion-icon name="log-out-outline"></ion-icon></div>
+                <div className="icon" onClick={() => navigate('/')}><ion-icon name="log-out-outline"></ion-icon></div>
             </div>
 
             <div className="records">
@@ -29,7 +31,7 @@ export default function Historic() {
 
                 <div className="options">
                     <div className="new-entry">
-                        <div className="icon">
+                        <div className="icon" onClick={() => navigate('/earnings')}>
                             <ion-icon name="add-circle-outline"></ion-icon>
                         </div>
                         <div className="text">
@@ -37,7 +39,7 @@ export default function Historic() {
                         </div>
                     </div>
                     <div className="new-output">
-                        <div className="icon">
+                        <div className="icon" onClick={() => navigate('/outlay')}>
                             <ion-icon name="remove-circle-outline"></ion-icon>
                         </div>
                         <div className="text">
@@ -46,8 +48,6 @@ export default function Historic() {
                     </div>
                 </div>
             </div>
-
         </HistoricContainer>
-
     )
-}
+};

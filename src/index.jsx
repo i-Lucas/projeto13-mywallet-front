@@ -13,9 +13,9 @@ function App() {
 			<Routes>
 				<Route path="/" element={<SignIn />} />
 				<Route path="/signup" element={<SignUp />} />
-                <Route path="/historic" element={<Historic />} />
-                <Route path="/earnings" element={<Earnings />} />
-                <Route path="/outlay" element={<Outlay />} />
+				<Route path="/historic" element={<Historic />} />
+				<Route path="/earnings" element={<Earnings />} />
+				<Route path="/outlay" element={<Outlay />} />
 			</Routes>
 		</BrowserRouter>
 	);

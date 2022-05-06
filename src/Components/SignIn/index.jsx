@@ -1,5 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import SignInContainer from "./style"
 
 export default function SignIn() {
@@ -16,6 +16,7 @@ export default function SignIn() {
         // const validatePass = pass.test(data.password); 
         // const validateEmail = email.test(data.email);
         // return validatePass ? validateEmail ? navigate('/historic') : alert('invalid email') : alert('invalid password');
+        navigate('/historic');
     }
 
     return (
@@ -29,7 +30,7 @@ export default function SignIn() {
                     <input type='password' placeholder='password' required
                         onChange={e => setData({ ...data, password: e.target.value })} />
                     <button type='submit'>Sign In</button>
-                    <Link to='/singup'>Don't have an account? Sign-Up !</Link>
+                    <Link to='/signup'>Don't have an account? Sign-Up !</Link>
                 </form>
             </div>
         </SignInContainer>

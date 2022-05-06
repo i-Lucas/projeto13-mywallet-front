@@ -1,10 +1,12 @@
-import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { useState } from 'react'
 
 import OutlayContainer from "./style" 
 
 export default function Outlay() {
 
-    const [data, setData] = useState({ email: '', password: '', error: undefined, tip: undefined })
+    const navigate = useNavigate();
+    const [data, setData] = useState({ email: '', password: '' })
 
     function HandleSubmit(e) {
 
@@ -14,23 +16,17 @@ export default function Outlay() {
     return (
 
         <OutlayContainer>
-
             <div className="title">
                 <h1>Add Expenses</h1>
             </div>
 
             <form onSubmit={HandleSubmit}>
-
                 <input type='text' placeholder='value' required
                     onChange={e => setData({ ...data, email: e.target.value })} />
-
                 <input type='text' placeholder='description' required
                     onChange={e => setData({ ...data, password: e.target.value })} />
-
-                <button type='submit'>Save new expense</button>
-
+                <button type='submit' onClick={() => navigate('/historic')}>Save new expense</button>
             </form>
-
         </OutlayContainer>
     )
-}
+};

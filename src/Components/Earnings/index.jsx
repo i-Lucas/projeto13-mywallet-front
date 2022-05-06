@@ -1,10 +1,12 @@
-import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { useState } from 'react'
 
 import EarningsContainer from "./style" 
 
 export default function Earnings() {
 
-    const [data, setData] = useState({ email: '', password: '', error: undefined, tip: undefined })
+    const navigate = useNavigate();
+    const [data, setData] = useState({ email: '', password: '' })
 
     function HandleSubmit(e) {
 
@@ -12,25 +14,15 @@ export default function Earnings() {
     }
 
     return (
-
         <EarningsContainer>
-
-            <div className="title">
-                <h1>Add Earnings</h1>
-            </div>
-
+            <div className="title"> <h1>Add Earnings</h1></div>                      
             <form onSubmit={HandleSubmit}>
-
                 <input type='text' placeholder='value' required
                     onChange={e => setData({ ...data, email: e.target.value })} />
-
                 <input type='text' placeholder='description' required
                     onChange={e => setData({ ...data, password: e.target.value })} />
-
-                <button type='submit'>Save new gain</button>
-
+                <button type='submit'onClick={() => navigate('/historic')}> Save new gain</button>
             </form>
-
         </EarningsContainer>
     )
-}
+};

@@ -1,10 +1,10 @@
-import { Link, useNavigate } from 'react-router-dom'
-import { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
+import { useState } from 'react'
 import SignUpContainer from "./style"
 
 export default function SignUp() {
 
-    const [data, setData] = useState({ email: '', password: '', error: undefined, tip: undefined })
+    const [data, setData] = useState({ email: '', password: '' })
 
     function HandleSubmit(e) {
         return alert("oi");
@@ -30,4 +30,4 @@ export default function SignUp() {
             </div>
         </SignUpContainer>
     )
-}
+};
