@@ -8,13 +8,17 @@ export default function Historic({ username, token }) {
 
     const navigate = useNavigate();
     const [historic, setHistoric] = useState([]);
+    const [userCache, setCache] = useState(0);
 
     useEffect(() => {
 
         const header = { headers: { "Authorization": `Bearer ${token ? token : localStorage.getItem('log')}` } }
         const url = 'http://localhost:5000/historic';
 
-        axios.get(url, header).then(res => res.data.map(item => setHistoric(historic => [...historic, item]))).catch(err => alert(err.response.data));
+        axios.get(url, header).then(res => {
+            res.data.map(item => setHistoric(historic => [...historic, item]))
+            axios.get('http://localhost:5000/cache', header).then(res => { setCache(res.data); });
+        }).catch(err => alert(err.response.data));
 
     }, [token])
 
@@ -25,14 +29,39 @@ export default function Historic({ username, token }) {
         return navigate('/');
     };
 
-    function RenderHistoric({ date, desc, amount, type }) {
+    const BuildHistoric = () => {
+        return historic.map((elem, idx) =>
+            <RenderHistoric key={idx} id={elem._id} date={elem.time} desc={elem.description} amount={elem.amount} type={elem.type} />)
+    }
+
+
+    function DeleteHistoric(id) {
+
+        const res = window.confirm('Do you really want to delete this record?');
+        if (res) {
+            const header = { headers: { "Authorization": `Bearer ${token ? token : localStorage.getItem('log')}` } }
+            const url = `http://localhost:5000/delete?id=${id}`;
+            axios.delete(url, header).then(() => window.location.reload()).catch(err => alert(err.response.data));
+        }
+    }
+
+    function EditHistoric(id) {
+
+        const res = prompt('Enter the new description');
+        if (res) {
+            const url = `http://localhost:5000/edit?id=${id}`;
+            axios.put(url, {description: res}).then(() => window.location.reload()).catch(err => alert(err.response.data));
+        }
+    }
+
+    function RenderHistoric({ date, desc, amount, type, id }) {
 
         return (
             <div className="balance">
                 <div className="date"><h1>{date}</h1></div>
-                <div className="desc"><h1>{desc}</h1></div>
+                <div className="desc" onClick={() => EditHistoric(id)}><h1>{desc}</h1></div>
                 <div className="value"><h1 className={type === "deposit" ? "green" : "red"}>{amount}</h1></div>
-
+                <div className="delte" onClick={() => DeleteHistoric(id)} ><ion-icon name="close-outline"></ion-icon></div>
             </div>
         )
     }
@@ -43,18 +72,15 @@ export default function Historic({ username, token }) {
                 <h1>Hi {username ? username : localStorage.getItem('name')}</h1>
                 <div className="icon" onClick={() => logout()}><ion-icon name="log-out-outline"></ion-icon></div>
             </div>
-            {console.log(historic)}
 
             <div className="records">
                 <div className="screen">
-
-                    {historic.map((item, i) => <RenderHistoric key={i} date={item.time} desc={item.description} amount={item.amount} type={item.type} />)}
-
+                    {BuildHistoric()}
                 </div>
 
                 <div className="total">
                     <h1>balance</h1>
-                    <h2>1000</h2>
+                    <h2 className={userCache >= 0 ? "green" : "red"}>{userCache}</h2>
                 </div>
 
                 <div className="options">

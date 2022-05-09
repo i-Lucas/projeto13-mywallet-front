@@ -14,7 +14,7 @@ export default function Earnings() {
         e.preventDefault()
         const header = { headers: { "Authorization": `Bearer ${localStorage.getItem('log')}` } }
         const url = 'http://localhost:5000/historic';
-        axios.post(url, data, header).then(res => navigate('/historic')).catch(err => alert(err.response.data));
+        axios.post(url, data, header).then(navigate('/historic')).catch(err => alert(err.response.data));
     }
 
     return (

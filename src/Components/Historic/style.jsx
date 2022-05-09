@@ -81,7 +81,7 @@ const Container = styled.div`
 
                 .date {
 
-                    width: 20%;
+                    width: 10%;
                     display: flex;
                     justify-content: center;
                     align-items: center;
@@ -113,6 +113,16 @@ const Container = styled.div`
 
                     .red {color: #C70000;}
                     .green {color: #00C700;}
+                }
+
+                .delte {
+
+                    width: 10%;
+                    cursor: pointer;
+
+                    ion-icon {
+                        color: #C6C6C6;
+                    }
                 }
             }
         }
@@ -147,6 +157,9 @@ const Container = styled.div`
                 line-height: 20px;
                 color: #03AC00;
             }
+
+            .red {color: #C70000;}
+            .green {color: #00C700;}
         }
 
         .options {
