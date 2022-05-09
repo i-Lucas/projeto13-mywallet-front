@@ -1,22 +1,31 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
-import SignInContainer from "./style"
 
-export default function SignIn() {
+import SignInContainer from "./style"
+import axios from 'axios';
+
+export default function SignIn({ setInfo }) {
 
     const navigate = useNavigate();
-    const [data, setData] = useState({ email: '', password: '' })
-
-    // const pass = /^[a-zA-Z]{6}$/
-    // const email = /^[a-zA-Z]{6}$/
+    const [data, setData] = useState({ email: '', password: '' });
 
     function HandleSubmit(e) {
 
         e.preventDefault()
-        // const validatePass = pass.test(data.password); 
-        // const validateEmail = email.test(data.email);
-        // return validatePass ? validateEmail ? navigate('/historic') : alert('invalid email') : alert('invalid password');
-        navigate('/historic');
+
+        axios.post('http://localhost:5000/sign-in', data).then(res => {
+
+            console.log("login sucess")
+            setInfo({ username: res.data.username, token: res.data.token });
+            localStorage.setItem('log', res.data.token);
+            localStorage.setItem('name', res.data.username);
+            return navigate('/historic');
+
+        }).catch(err => {
+
+            console.log(err.response.data)
+            alert(err.response.data)
+        });
     }
 
     return (

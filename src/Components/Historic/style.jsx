@@ -111,9 +111,8 @@ const Container = styled.div`
                     justify-content: center;
                     align-items: center;
 
-                    h1 {
-                        color: #C70000;
-                    }
+                    .red {color: #C70000;}
+                    .green {color: #00C700;}
                 }
             }
         }

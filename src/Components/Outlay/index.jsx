@@ -1,16 +1,20 @@
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
+import axios from 'axios';
 
 import OutlayContainer from "./style" 
 
 export default function Outlay() {
 
     const navigate = useNavigate();
-    const [data, setData] = useState({ email: '', password: '' })
+    const [data, setData] = useState({ amount: '', description: '', type: 'withdraw' })
 
     function HandleSubmit(e) {
 
-        return alert("oi");
+        e.preventDefault()
+        const header = { headers: { "Authorization": `Bearer ${localStorage.getItem('log')}` } }
+        const url = 'http://localhost:5000/historic';
+        axios.post(url, data, header).then(res => navigate('/historic')).catch(err => alert(err.response.data));
     }
 
     return (
@@ -22,10 +26,10 @@ export default function Outlay() {
 
             <form onSubmit={HandleSubmit}>
                 <input type='text' placeholder='value' required
-                    onChange={e => setData({ ...data, email: e.target.value })} />
+                    onChange={e => setData({ ...data, amount: e.target.value })} />
                 <input type='text' placeholder='description' required
-                    onChange={e => setData({ ...data, password: e.target.value })} />
-                <button type='submit' onClick={() => navigate('/historic')}>Save new expense</button>
+                    onChange={e => setData({ ...data, description: e.target.value })} />
+                <button type='submit'>Save new expense</button>
             </form>
         </OutlayContainer>
     )
