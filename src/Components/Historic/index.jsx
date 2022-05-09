@@ -9,15 +9,14 @@ export default function Historic({ username, token }) {
     const navigate = useNavigate();
     const [historic, setHistoric] = useState([]);
     const [userCache, setCache] = useState(0);
+    const API = `https://mywallet20.herokuapp.com/`;
 
     useEffect(() => {
 
         const header = { headers: { "Authorization": `Bearer ${token ? token : localStorage.getItem('log')}` } }
-        const url = 'http://localhost:5000/historic';
-
-        axios.get(url, header).then(res => {
+        axios.get(`${API}/historic`, header).then(res => {
             res.data.map(item => setHistoric(historic => [...historic, item]))
-            axios.get('http://localhost:5000/cache', header).then(res => { setCache(res.data); });
+            axios.get(`${API}/cache`, header).then(res => { setCache(res.data); });
         }).catch(err => alert(err.response.data));
 
     }, [token])
@@ -32,16 +31,14 @@ export default function Historic({ username, token }) {
     const BuildHistoric = () => {
         return historic.map((elem, idx) =>
             <RenderHistoric key={idx} id={elem._id} date={elem.time} desc={elem.description} amount={elem.amount} type={elem.type} />)
-    }
-
+    };
 
     function DeleteHistoric(id) {
 
         const res = window.confirm('Do you really want to delete this record?');
         if (res) {
             const header = { headers: { "Authorization": `Bearer ${token ? token : localStorage.getItem('log')}` } }
-            const url = `http://localhost:5000/delete?id=${id}`;
-            axios.delete(url, header).then(() => window.location.reload()).catch(err => alert(err.response.data));
+            axios.delete(`${API}/delete?id=${id}`, header).then(() => window.location.reload()).catch(err => alert(err.response.data));
         }
     }
 
@@ -49,8 +46,7 @@ export default function Historic({ username, token }) {
 
         const res = prompt('Enter the new description');
         if (res) {
-            const url = `http://localhost:5000/edit?id=${id}`;
-            axios.put(url, {description: res}).then(() => window.location.reload()).catch(err => alert(err.response.data));
+            axios.put(`${API}/edit?id=${id}`, { description: res }).then(() => window.location.reload()).catch(err => alert(err.response.data));
         }
     }
 

@@ -7,14 +7,14 @@ import OutlayContainer from "./style"
 export default function Outlay() {
 
     const navigate = useNavigate();
-    const [data, setData] = useState({ amount: '', description: '', type: 'withdraw' })
+    const [data, setData] = useState({ amount: '', description: '', type: 'withdraw' });
+    const API = `https://mywallet20.herokuapp.com/`;
 
     function HandleSubmit(e) {
 
         e.preventDefault()
         const header = { headers: { "Authorization": `Bearer ${localStorage.getItem('log')}` } }
-        const url = 'http://localhost:5000/historic';
-        axios.post(url, data, header).then(res => navigate('/historic')).catch(err => alert(err.response.data));
+        axios.post(`${API}/historic`, data, header).then(res => navigate('/historic')).catch(err => alert(err.response.data));
     }
 
     return (

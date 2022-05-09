@@ -8,24 +8,20 @@ export default function SignIn({ setInfo }) {
 
     const navigate = useNavigate();
     const [data, setData] = useState({ email: '', password: '' });
+    const API = `https://mywallet20.herokuapp.com/`;
 
     function HandleSubmit(e) {
 
         e.preventDefault()
 
-        axios.post('http://localhost:5000/sign-in', data).then(res => {
+        axios.post(`${API}/sign-in`, data).then(res => {
 
-            console.log("login sucess")
             setInfo({ username: res.data.username, token: res.data.token });
             localStorage.setItem('log', res.data.token);
             localStorage.setItem('name', res.data.username);
             return navigate('/historic');
 
-        }).catch(err => {
-
-            console.log(err.response.data)
-            alert(err.response.data)
-        });
+        }).catch(err => alert(err.response.data));
     }
 
     return (

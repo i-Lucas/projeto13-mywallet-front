@@ -7,11 +7,12 @@ export default function SignUp() {
 
     const navigate = useNavigate();
     const [data, setData] = useState({ username: '', email: '', password: '', repeat_password: '' });
+    const API = `https://mywallet20.herokuapp.com/`;
 
     function HandleSubmit(e) {
 
         e.preventDefault()
-        axios.post('http://localhost:5000/sign-up', data).then(res => navigate('/')).catch(err => alert(err.response.data));
+        axios.post(`${API}/sign-up`, data).then(res => navigate('/')).catch(err => alert(err.response.data));
     }
 
     return (
