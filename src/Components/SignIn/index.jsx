@@ -8,7 +8,7 @@ export default function SignIn({ setInfo }) {
 
     const navigate = useNavigate();
     const [data, setData] = useState({ email: '', password: '' });
-    const API = `https://mywallet20.herokuapp.com/`;
+    const API = `https://mywallet20.herokuapp.com`;
 
     function HandleSubmit(e) {
 

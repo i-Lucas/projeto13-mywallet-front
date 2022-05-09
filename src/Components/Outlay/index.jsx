@@ -8,7 +8,7 @@ export default function Outlay() {
 
     const navigate = useNavigate();
     const [data, setData] = useState({ amount: '', description: '', type: 'withdraw' });
-    const API = `https://mywallet20.herokuapp.com/`;
+    const API = `https://mywallet20.herokuapp.com`;
 
     function HandleSubmit(e) {
 

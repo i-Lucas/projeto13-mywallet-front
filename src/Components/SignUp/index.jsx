@@ -7,7 +7,7 @@ export default function SignUp() {
 
     const navigate = useNavigate();
     const [data, setData] = useState({ username: '', email: '', password: '', repeat_password: '' });
-    const API = `https://mywallet20.herokuapp.com/`;
+    const API = `https://mywallet20.herokuapp.com`;
 
     function HandleSubmit(e) {
 

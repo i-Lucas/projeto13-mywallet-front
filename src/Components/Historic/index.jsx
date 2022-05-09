@@ -9,7 +9,7 @@ export default function Historic({ username, token }) {
     const navigate = useNavigate();
     const [historic, setHistoric] = useState([]);
     const [userCache, setCache] = useState(0);
-    const API = `https://mywallet20.herokuapp.com/`;
+    const API = `https://mywallet20.herokuapp.com`;
 
     useEffect(() => {
 
